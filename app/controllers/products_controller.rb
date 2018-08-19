@@ -4,7 +4,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @subcat = Subcat.find(params[:subcat_id])
+    @products = @subcat.products.all
   end
 
   # GET /products/1
@@ -72,6 +73,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:manuf_description, :Subcat_id)
+      params.require(:product).permit(:manuf_id, :manuf_description, :subcat_id, :price, :gage, :weight, :length, :finish)
     end
 end

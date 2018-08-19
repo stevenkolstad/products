@@ -4,7 +4,7 @@ class SubcatsController < ApplicationController
   # GET /subcats
   # GET /subcats.json
   def index
-    @subcats = Subcat.all
+    @subcats = Category.find(params[:category_id]).subcats.all
   end
 
   # GET /subcats/1

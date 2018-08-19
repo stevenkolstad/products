@@ -1,7 +1,7 @@
-<%= simple_form_for [@subcat.category, @subcat, @product] do |form| %>
+<%= simple_form_for @product, url: @product.new_record? ? category_subcat_products_path(@subcat.category, @subcat) : category_subcat_product_path(@subcat.category, @subcat) do |form| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
       <ul>
       <% @product.errors.full_messages.each do |message| %>
