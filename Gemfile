@@ -22,6 +22,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'simple_form'
+gem 'smarter_csv'
 group :development do
   gem 'better_errors'
   gem 'foreman'
