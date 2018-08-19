@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Subcat name:</strong>
   <%= @subcat.subcat_name %>
@@ -7,8 +5,9 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @subcat.category %>
+  <%= link_to @subcat.category.name, category_path(@subcat.category) %>
 </p>
-
-<%= link_to 'Edit', edit_subcat_path(@subcat) %> |
-<%= link_to 'Back', subcats_path %>
+<%= link_to 'New Product', new_category_subcat_product_path(params[:category_id], @subcat) %> | 
+<%= link_to 'Products', category_subcat_products_path(params[:category_id], @subcat) %> | 
+<%= link_to 'Edit', edit_category_subcat_path(params[:category_id], @subcat) %> |
+<%= link_to 'Back', category_subcats_path(params[:category_id]) %>

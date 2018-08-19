@@ -14,7 +14,8 @@ class SubcatsController < ApplicationController
 
   # GET /subcats/new
   def new
-    @subcat = Subcat.new
+    @category = Category.find(params[:category_id])
+    @subcat = @category.subcats.build
   end
 
   # GET /subcats/1/edit
@@ -24,11 +25,12 @@ class SubcatsController < ApplicationController
   # POST /subcats
   # POST /subcats.json
   def create
-    @subcat = Subcat.new(subcat_params)
+    @category = Category.find(params[:category_id])
+    @subcat = @category.subcats.build(subcat_params)
 
     respond_to do |format|
       if @subcat.save
-        format.html { redirect_to @subcat, notice: 'Subcat was successfully created.' }
+        format.html { redirect_to category_subcat_path(params[:category_id], @subcat.id), notice: 'Subcat was successfully created.' }
         format.json { render :show, status: :created, location: @subcat }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class SubcatsController < ApplicationController
   def update
     respond_to do |format|
       if @subcat.update(subcat_params)
-        format.html { redirect_to @subcat, notice: 'Subcat was successfully updated.' }
+        format.html { redirect_to category_subcat_path(@subcat.category, @subcat.id), notice: 'Subcat was successfully updated.' }
         format.json { render :show, status: :ok, location: @subcat }
       else
         format.html { render :edit }
@@ -56,7 +58,7 @@ class SubcatsController < ApplicationController
   def destroy
     @subcat.destroy
     respond_to do |format|
-      format.html { redirect_to subcats_url, notice: 'Subcat was successfully destroyed.' }
+      format.html { redirect_to @subcat.category, notice: 'Subcat was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

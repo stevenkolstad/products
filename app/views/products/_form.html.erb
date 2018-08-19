@@ -1,4 +1,4 @@
-<%= simple_form_for @product do |form| %>
+<%= simple_form_for [@subcat.category, @subcat, @product] do |form| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -12,16 +12,41 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :manuf_id %>
+    <%= form.text_field :manuf_id %>
+  </div>
+
+  <div class="field">
     <%= form.label :manuf_description %>
     <%= form.text_field :manuf_description %>
   </div>
 
   <div class="field">
-    <%= form.label :Subcat_id %>
-    <%= form.text_field :Subcat_id %>
+    <%= form.label :gage %>
+    <%= form.text_field :gage %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weight %>
+    <%= form.text_field :weight %>
+  </div>
+
+  <div class="field">
+    <%= form.label :length %>
+    <%= form.text_field :length %>
+  </div>
+
+  <div class="field">
+    <%= form.label :finish %>
+    <%= form.text_field :finish %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Submit' %>
   </div>
 <% end %>

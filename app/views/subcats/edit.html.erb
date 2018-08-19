@@ -2,5 +2,5 @@
 
 <%= render 'form', subcat: @subcat %>
 
-<%= link_to 'Show', @subcat %> |
-<%= link_to 'Back', subcats_path %>
+<%= link_to 'Show', category_subcat_path(params[:category_id], @subcat) %> |
+<%= link_to 'Back', category_subcats_path(params[:category_id]) %>

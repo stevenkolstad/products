@@ -14,7 +14,8 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    @subcat = Subcat.find(params[:subcat_id])
+    @product = @subcat.products.build
   end
 
   # GET /products/1/edit
@@ -24,11 +25,12 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @subcat = Subcat.find(params[:subcat_id])
+    @product = @subcat.products.new(product_params)
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to category_subcat_product_path(@subcat.category, @subcat, @product), notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to category_subcat_product_path(@subcat.category, @subcat, @product), notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -56,7 +58,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to category_subcat_path(@subcat.category, @subcat), notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,6 +66,7 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
+      @subcat = Subcat.find(params[:subcat_id])
       @product = Product.find(params[:id])
     end
 

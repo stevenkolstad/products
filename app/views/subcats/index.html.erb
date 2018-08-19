@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Subcats</h1>
 
 <table>
@@ -15,10 +13,10 @@
     <% @subcats.each do |subcat| %>
       <tr>
         <td><%= subcat.subcat_name %></td>
-        <td><%= subcat.category %></td>
-        <td><%= link_to 'Show', subcat %></td>
-        <td><%= link_to 'Edit', edit_subcat_path(subcat) %></td>
-        <td><%= link_to 'Destroy', subcat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to subcat.category.name, category_path(params[:category_id]) %></td>
+        <td><%= link_to 'Show', category_subcat_path(params[:category_id], subcat.id) %></td>
+        <td><%= link_to 'Edit', edit_category_subcat_path(params[:category_id], subcat.id) %></td>
+        <td><%= link_to 'Destroy', category_subcat_path(params[:category_id], subcat.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Subcat', new_subcat_path %>
+<%= link_to 'New Subcat', new_category_subcat_path(params[:category_id]) %>
