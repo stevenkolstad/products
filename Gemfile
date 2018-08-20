@@ -23,6 +23,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'smarter_csv'
+gem 'carrierwave', '~> 1.0'
 group :development do
   gem 'better_errors'
   gem 'foreman'

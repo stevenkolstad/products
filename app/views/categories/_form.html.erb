@@ -16,6 +16,11 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="field">
+    <%= form.label :csv, 'Import CSV File' %>
+    <%= form.file_field :csv %>
+  </div>
+
   <div class="actions">
     <%= form.submit 'Submit' %>
   </div>
